@@ -1,0 +1,54 @@
+{% extends 'master.html' %}
+{% block styles %}
+    <style>
+        /* body {
+            margin:0;
+            background-color: antiquewhite;
+        } */
+        img {
+            max-width: 120px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .product {
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <h3>Filter by Category:</h3>
+    <ul>
+        <li><a href="/">All</a></li>
+        {% for category in categories %}
+            <li><a href="?category={{ category.id }}">{{ category.name }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <form method="get">
+        <input type="text" name="q" placeholder="Search..." value="{{ request.GET.q }}">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if request.GET.category %}
+    <input type="hidden" name="category" value="{{ request.GET.category }}">
+    {% endif %}
+
+    <div class="product-grid">
+        {% for product in products %}
+            <div class="product">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                {% endif %}
+                <h2><a href="{% url 'product_detail' product.pk %}">{{ product.name }}</a></h2>
+                <p>₹{{ product.price }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

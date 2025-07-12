@@ -1,0 +1,43 @@
+{% load static %}
+<html>
+
+<head>
+	<link rel="stylesheet" href="{% static 'css/college_styles.css' %}">
+    {% block styles %} {% endblock %}
+</head>
+
+<body>
+	<nav>
+        <img src='{% static "img/logo.png" %}' alt="College logo">
+        <ul>
+            <li><a href="#">Mother Theresa Institutions Canteen, Palamaner</a></li>
+        </ul>
+        <div class="cart">
+            <a href="#">🛒 Add to Cart</a>
+        </div>
+    </nav>
+	<div class="navbar">
+		<a href="#">Home</a>
+		<a href="{% url 'b_product_list' %}">Bakery</a>
+		<a href="{% url 'product_list' %}">Canteen</a>
+		<a href="#">Hostel-Mess</a>
+
+		<div class="login">
+			<a href="#">Login</a>
+		</div>
+
+	</div>
+
+    {% block content %}
+
+    {% endblock %}
+
+</body>
+<footer>
+    &copy; 
+    <p>Srikar TS, </p>
+    <p>2724172, 
+    <a href="mailto:srikarsri52@gmail.com">srikarsri52@gmail.com</a>
+</footer>
+
+</html>

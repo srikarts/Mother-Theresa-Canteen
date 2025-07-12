@@ -1,0 +1,13 @@
+{% extends 'master.html' %}
+    {% block styles %}
+    <title>{{ b_product.name }}</title>
+    {% endblock %}
+{% block content %}
+    <h1>{{ b_product.name }}</h1>
+    {% if b_product.image %}
+        <img src="{{ b_product.image.url }}" alt="{{ b_product.name }}">
+    {% endif %}
+    <p>{{ b_product.description }}</p>
+    <p>Price: Rs{{ b_product.price }}</p>
+    <a href="{url 'b_product_list'}">Back to Products</a>
+{% endblock %}
